@@ -1,4 +1,4 @@
-package tama;
+package tama.gui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -16,15 +16,13 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
+import tama.Tamagoshi;
 import tama.gui.GraphicTama;
 
 public class VirtualAnimator {
     // ATTRIBUTS
     private static final int DELAY = 1000;
     private static final int MAX_MEAL = 3;
-    private static final int INIT_NRJ = 5;
-    private static final int INIT_MAX_AGE = 20;
-    private static final int INIT_STOMACH_SIZE = 20;
     
     private GraphicTama tama;
     private JButton feed;
@@ -35,8 +33,8 @@ public class VirtualAnimator {
 
     // CONSTRUCTEURS
 
-    public VirtualAnimator() {
-        createView();
+    public VirtualAnimator(Tamagoshi tamagoshi) {
+        createView(tamagoshi);
         placeComponents();
         createController();
         createTimer();
@@ -55,9 +53,9 @@ public class VirtualAnimator {
 
     // OUTILS
 
-    private void createView() {
+    private void createView(Tamagoshi tamagoshi) {
         frame = new JFrame("Tamagoshi v2");
-        tama = new GraphicTama(INIT_NRJ, INIT_MAX_AGE, INIT_STOMACH_SIZE);
+        tama = new GraphicTama(tamagoshi);
         feed = new JButton("Feed");
         oneStep = new JButton("One Step");
         stepByStep = new JCheckBox("Step by step", true);
@@ -164,13 +162,5 @@ public class VirtualAnimator {
             }
             JOptionPane.showMessageDialog(frame, msg, title, msgType);
         }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new VirtualAnimator().display();
-            }
-        });
     }
 }

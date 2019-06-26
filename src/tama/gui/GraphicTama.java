@@ -18,9 +18,10 @@ public class GraphicTama extends Component {
     private final String imageIsSick = "sick.jpg";
     private final String imageIsTired = "sick.jpg";
 
-    public GraphicTama(int initNrj, int initMaxAge, int initStomachSize) {
-        tamagoshi = new Tamagoshi(initNrj, initMaxAge, initStomachSize);
+    public GraphicTama(Tamagoshi tamagoshi) {
+        this.tamagoshi = tamagoshi;
         propertyChangeSupport = new PropertyChangeSupport(tamagoshi);
+
     }
 
     @Override
